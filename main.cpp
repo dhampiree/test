@@ -10,13 +10,13 @@ public:
   {
     int stringLength = stringToEncode.length();
     int keyLength = key.length();
-
+    int numberOfAlpha;
+    int numberOfKey;
     char symbol;
     char keySymbol;
     bool isBig;
-    bool keySymbolIsBig;
-    char encryptedAlphaNumber;
-
+    bool keySymbolIsBig; 
+    
     for (int i = 0; i < stringLength; i++) 
     {
       symbol = stringToEncode[i];
@@ -28,8 +28,8 @@ public:
       keySymbol = key[i % keyLength];
       keySymbolIsBig = isupper(keySymbol);
 
-      int numberOfAlpha = symbol - (isBig ? 'A' : 'a');
-      int numberOfKey   = keySymbol - (keySymbolIsBig ? 'A' : 'a');
+      numberOfAlpha = symbol - (isBig ? 'A' : 'a');
+      numberOfKey   = keySymbol - (keySymbolIsBig ? 'A' : 'a');
       symbol = (numberOfAlpha + numberOfKey) % 26;
 
       stringToEncode[i] = symbol + (isBig ? 'A' : 'a');
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     return 1;
 
   string key = argv[1];
-  for (int i = 0; i < key.length(); i++){
+  for (int i = 0; i < key.length(); i++) {
     if (!isalpha(key[i]))
       return 1;
   }
